@@ -1,7 +1,7 @@
 <?php
 class ControllerInformationInformation extends Controller {
 	public function index() {
-		$this->load->language('information/information');
+		$language = $this->load->language('information/information');
 
 		$this->load->model('catalog/information');
 
@@ -43,7 +43,8 @@ class ControllerInformationInformation extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			$this->response->setOutput($this->load->view('information/information', $data));
+			//$this->response->setOutput($this->load->view('information/information', $data));
+            $this->response->setOutput(json_encode(array_merge((array)$language, (array)$data)));
 		} else {
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('text_error'),

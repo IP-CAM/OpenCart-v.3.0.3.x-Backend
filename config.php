@@ -1,15 +1,17 @@
 <?php
+$host = 'http://localhost:8888/OpenCartBackend';
+$dir = '/Users/kuzmavladislavvladimirovic/Documents/2020/java_projects/OpenCartBackend';
 // HTTP
-define('HTTP_SERVER', 'http://localhost:63343/OpenCartBackend/');
+define('HTTP_SERVER', $host . '/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost:63343/OpenCartBackend/');
+define('HTTPS_SERVER', $host . '/');
 
 // DIR
-define('DIR_APPLICATION', '/Users/kuzmavladislavvladimirovic/Documents/2020/java_projects/OpenCartBackend/catalog/');
-define('DIR_SYSTEM', '/Users/kuzmavladislavvladimirovic/Documents/2020/java_projects/OpenCartBackend/system/');
-define('DIR_IMAGE', '/Users/kuzmavladislavvladimirovic/Documents/2020/java_projects/OpenCartBackend/image/');
-define('DIR_STORAGE', DIR_SYSTEM . 'storage/');
+define('DIR_APPLICATION', $dir . '/catalog/');
+define('DIR_SYSTEM', $dir . '/system/');
+define('DIR_IMAGE', $dir . '/image/');
+define('DIR_STORAGE', '/Users/kuzmavladislavvladimirovic/Documents/2020/java_projects/OpenCartBackend/storage/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/theme/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');

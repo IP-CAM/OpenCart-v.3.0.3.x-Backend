@@ -43,6 +43,7 @@ class ControllerCommonLanguage extends Controller {
 		}
 
 		return $this->load->view('common/language', $data);
+        //$this->response->setOutput(json_encode($data));
 	}
 
 	public function language() {

@@ -3,7 +3,7 @@ class ControllerInformationContact extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('information/contact');
+		$language = $this->load->language('information/contact');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -138,7 +138,7 @@ class ControllerInformationContact extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
-		$this->response->setOutput($this->load->view('information/contact', $data));
+		$this->response->setOutput(json_encode(array_merge((array) $language, (array) $data)));
 	}
 
 	protected function validate() {

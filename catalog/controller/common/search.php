@@ -1,7 +1,7 @@
 <?php
 class ControllerCommonSearch extends Controller {
 	public function index() {
-		$this->load->language('common/search');
+		$language = $this->load->language('common/search');
 
 		$data['text_search'] = $this->language->get('text_search');
 
@@ -11,6 +11,6 @@ class ControllerCommonSearch extends Controller {
 			$data['search'] = '';
 		}
 
-		return $this->load->view('common/search', $data);
+        $this->response->setOutput(json_encode(array_merge((array) $language, (array) $data)));
 	}
 }

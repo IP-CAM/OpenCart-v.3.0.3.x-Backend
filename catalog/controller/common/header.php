@@ -43,7 +43,7 @@ class ControllerCommonHeader extends Controller {
 			$data['logo'] = '';
 		}
 
-		$this->load->language('common/header');
+		$language = $this->load->language('common/header');
 
 		// Wishlist
 		if ($this->customer->isLogged()) {
@@ -53,30 +53,33 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$data['text_wishlist'] = sprintf($this->language->get('text_wishlist'), (isset($this->session->data['wishlist']) ? count($this->session->data['wishlist']) : 0));
 		}
+		unset($language['text_wishlist']);
 
 		$data['text_logged'] = sprintf($this->language->get('text_logged'), $this->url->link('account/account', '', true), $this->customer->getFirstName(), $this->url->link('account/logout', '', true));
+        unset($language['text_logged']);
 		
-		$data['home'] = $this->url->link('common/home');
-		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
+		$data['home'] = '/';
+		$data['wishlist'] = '/account/wishlist';
 		$data['logged'] = $this->customer->isLogged();
-		$data['account'] = $this->url->link('account/account', '', true);
-		$data['register'] = $this->url->link('account/register', '', true);
-		$data['login'] = $this->url->link('account/login', '', true);
-		$data['order'] = $this->url->link('account/order', '', true);
-		$data['transaction'] = $this->url->link('account/transaction', '', true);
-		$data['download'] = $this->url->link('account/download', '', true);
-		$data['logout'] = $this->url->link('account/logout', '', true);
-		$data['shopping_cart'] = $this->url->link('checkout/cart');
-		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
-		$data['contact'] = $this->url->link('information/contact');
+		$data['account'] = '/account/account';
+		$data['register'] = '/account/register';
+		$data['login'] = '/account/login';
+		$data['order'] = '/account/order';
+		$data['transaction'] = '/account/transaction';
+		$data['download'] = '/account/download';
+		$data['logout'] = '/account/logout';
+		$data['shopping_cart'] = '/checkout/cart';
+		$data['checkout'] = '/checkout/checkout';
+		$data['contact'] = '/information/contact';
 		$data['telephone'] = $this->config->get('config_telephone');
 		
-		$data['language'] = $this->load->controller('common/language');
-		$data['currency'] = $this->load->controller('common/currency');
-		$data['search'] = $this->load->controller('common/search');
-		$data['cart'] = $this->load->controller('common/cart');
-		$data['menu'] = $this->load->controller('common/menu');
+//		$data['language'] = $this->load->controller('common/language');
+//		$data['currency'] = $this->load->controller('common/currency');
+//		$data['search'] = $this->load->controller('common/search');
+//		$data['cart'] = $this->load->controller('common/cart');
+//		$data['menu'] = $this->load->controller('common/menu');
 
-		return $this->load->view('common/header', $data);
+//		return $this->load->view('common/header', $data);
+        $this->response->setOutput(json_encode(array_merge((array) $language, (array) $data)));
 	}
 }

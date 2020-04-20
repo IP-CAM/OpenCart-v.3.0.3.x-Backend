@@ -1,9 +1,9 @@
 <?php
 class ControllerCommonCurrency extends Controller {
 	public function index() {
-		$this->load->language('common/currency');
+		$language = $this->load->language('common/currency');
 
-		$data['action'] = $this->url->link('common/currency/currency', '', $this->request->server['HTTPS']);
+		$data['action'] = 'index.php?route=common/currency/currency';
 
 		$data['code'] = $this->session->data['currency'];
 
@@ -44,7 +44,8 @@ class ControllerCommonCurrency extends Controller {
 			$data['redirect'] = $this->url->link($route, $url, $this->request->server['HTTPS']);
 		}
 
-		return $this->load->view('common/currency', $data);
+		//return $this->load->view('common/currency', $data);
+        $this->response->setOutput(json_encode(array_merge((array)$language, (array)$data)));
 	}
 
 	public function currency() {
@@ -58,7 +59,7 @@ class ControllerCommonCurrency extends Controller {
 		if (isset($this->request->post['redirect'])) {
 			$this->response->redirect($this->request->post['redirect']);
 		} else {
-			$this->response->redirect($this->url->link('common/home'));
+			$this->response->setOutput(json_encode($this->request->post['code']));
 		}
 	}
 }
